@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>The Architecture of Silence • Ylia Callan</title>
+    <meta name="description" content="The Architecture of Silence explores how cosmic structure, light, and information shape consciousness and culture.">
+    <link rel="canonical" href="https://yliacallan.github.io/books/the-architecture-of-silence/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="The Architecture of Silence • Ylia Callan">
+    <meta property="og:description" content="The Architecture of Silence explores how cosmic structure, light, and information shape consciousness and culture.">
+    <meta property="og:image" content="https://yliacallan.github.io/assets/covers/architecture-of-silence.jpg">
+    <meta property="og:url" content="https://yliacallan.github.io/books/the-architecture-of-silence/">
+    <meta property="og:type" content="book">
+
+    <!-- Schema: Book -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      "name": "The Architecture of Silence",
+      "author": {
+        "@type": "Person",
+        "name": "Ylia Callan"
+      },
+      "publisher": "Independent Publishing",
+      "datePublished": "2024",
+      "inLanguage": "en",
+      "bookFormat": ["EBook", "Paperback"],
+      "url": "https://yliacallan.github.io/books/the-architecture-of-silence/",
+      "image": "https://yliacallan.github.io/assets/covers/architecture-of-silence.jpg",
+      "description": "The Architecture of Silence explores how cosmic structure, light, and information shape consciousness and culture.",
+      "workExample": [
+        {
+          "@type": "Book",
+          "isbn": "979-8-8889-XXXX-X",
+          "bookFormat": "http://schema.org/EBook",
+          "potentialAction": {
+            "@type": "ReadAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://yliacallan.github.io/assets/books/the-architecture-of-silence.pdf"
+            }
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --black: #000000;
+            --cyan: #00eaff;
+            --cyan-glow: 0 0 12px rgba(0,234,255,0.5);
+            --transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+        }
+        *,*::before,*::after{box-sizing:border-box}
+        body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--black);color:#e0faff;line-height:1.65;overflow-x:hidden}
+        a{color:var(--cyan);text-decoration:none;transition:var(--transition)}
+        a:hover{opacity:.8}
+        h1,h2,h3{color:var(--cyan);text-shadow:var(--cyan-glow);margin:2rem 0 1rem;text-align:center}
+        h1{font-size:clamp(2.5rem,7vw,4.5rem)}
+        img{max-width:100%;display:block}
+
+        header{position:sticky;top:0;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);z-index:1000;border-bottom:1px solid rgba(0,234,255,.15)}
+        nav{max-width:1400px;margin:0 auto;padding:1rem;display:flex;justify-content:space-between;align-items:center}
+        .logo{font-size:1.5rem;font-weight:700;color:var(--cyan);text-shadow:var(--cyan-glow)}
+        .nav-links{display:flex;gap:2rem}
+        .nav-links a{position:relative;font-weight:500}
+        .nav-links a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:2px;background:var(--cyan);transition:var(--transition)}
+        .nav-links a:hover::after{width:100%}
+        .hamburger{display:none;cursor:pointer;width:28px;height:20px;position:relative}
+        .hamburger span{display:block;height:3px;width:100%;background:var(--cyan);border-radius:2px;transition:var(--transition)}
+        .hamburger span:nth-child(2){margin:5px 0}
+
+        .book-hero{padding:4rem 1rem;background:radial-gradient(circle at center,rgba(0,234,255,.06),transparent 70%)}
+        .subtitle{font-size:1.4rem;opacity:.9;margin:1rem 0}
+        .byline{font-size:1.1rem;opacity:.8}
+
+        .viewer-container{background:#111;border:2px solid rgba(0,234,255,.2);border-radius:16px;margin:2rem auto;max-width:1000px;overflow:hidden}
+        .viewer-container iframe{width:100%;height:80vh;border:none}
+        @media(max-width:768px){.viewer-container iframe{height:70vh}}
+
+        .actions{padding:2rem 1rem;max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+        .btn{display:flex;align-items:center;justify-content:center;gap:12px;padding:1rem 1.5rem;background:rgba(0,234,255,.1);border:2px solid var(--cyan);color:var(--cyan);font-weight:600;border-radius:12px;transition:var(--transition)}
+        .btn:hover{box-shadow:var(--cyan-glow);transform:translateY(-4px)}
+        .btn-primary{background:var(--cyan);color:#000}
+        .btn-primary:hover{filter:brightness(1.1)}
+
+        /* ========== SOCIAL SHARE BAR – FIXED & BEAUTIFUL ========== */
+        .social-share{
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 1.5rem;
+            background: rgba(0,234,255,.05);
+            border: 1px solid rgba(0,234,255,.25);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .social-share label{
+            color: var(--cyan);
+            font-weight: 600;
+            text-shadow: var(--cyan-glow);
+            margin-right: 0.5rem;
+        }
+        .share-buttons{
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .share-btn{
+            width: 48px;
+            height: 48px;
+            background: rgba(0,234,255,.1);
+            border: 2px solid var(--cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+        .share-btn:hover{
+            background: var(--cyan);
+            box-shadow: var(--cyan-glow);
+            transform: translateY(-4px);
+        }
+        .share-btn svg{
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        .tooltip{
+            position: absolute;
+            top: -36px;
+            background: #000;
+            color: var(--cyan);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity .3s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .share-btn.copied .tooltip{
+            opacity: 1;
+        }
+        @media(max-width:640px){
+            .social-share{flex-direction:column;gap:1rem}
+            .social-share label{font-size:1.1rem}
+        }
+
+        .metadata,.description,.themes{max-width:1000px;margin:4rem auto;padding:0 1rem}
+        .metadata{background:rgba(0,234,255,.03);border:1px solid rgba(0,234,255,.2);border-radius:16px;padding:2rem}
+        .metadata dl{display:grid;grid-template-columns:max-content 1fr;gap:1rem 2rem}
+        .metadata dt{color:var(--cyan);font-weight:600}
+        
+        .related{margin:4rem auto;padding:2rem;max-width:1400px}
+        .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:2rem}
+        .related-card{overflow:hidden;border-radius:16px;background:rgba(0,234,255,.03);transition:var(--transition)}
+        .related-card:hover{box-shadow:var(--cyan-glow);transform:translateY(-8px)}
+        .related-card img{height:300px;object-fit:cover;width:100%}
+
+        footer{padding:3rem 1rem;text-align:center;border-top:1px solid rgba(0,234,255,.15)}
+        .socials{display:flex;gap:1.5rem;justify-content:center;margin:1.5rem 0}
+        .socials svg{width:28px;height:28px;fill:var(--cyan);transition:var(--transition)}
+        .socials a:hover svg{transform:scale(1.2)}
+
+        @keyframes glow{from{text-shadow:0 0 12px rgba(0,234,255,.5)}to{text-shadow:0 0 20px rgba(0,234,255,.8),0 0 30px rgba(0,234,255,.4)}}
+        h1,h2{animation:glow 4s ease-in-out infinite alternate}
+
+        @media(max-width:768px){
+            .nav-links{position:fixed;top:70px;left:-100%;width:100%;height:calc(100vh-70px);background:rgba(0,0,0,.98);flex-direction:column;align-items:center;padding-top:4rem;transition:left .4s}
+            .nav-links.active{left:0}
+            .hamburger{display:block}
+            .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,6px)}
+            .hamburger.active span:nth-child(2){opacity:0}
+            .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-8px)}
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">Ylia Callan</div>
+        <div class="nav-links" id="navLinks">
+            <a href="/">Home</a>
+            <a href="/#books">Books</a>
+            <a href="/catalogue/">Catalogue</a>
+            <a href="/contact/">Contact</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <!-- Book Hero -->
+    <section class="book-hero">
+        <h1>The Architecture of Silence</h1>
+        <p class="subtitle">How cosmic structure shapes consciousness</p>
+        <p class="byline">by Ylia Callan</p>
+    </section>
+
+    <!-- PDF.js Viewer -->
+    <div class="viewer-container">
+        <iframe src="/assets/pdfjs/web/viewer.html?file=%2Fassets%2Fbooks%2Fthe-architecture-of-silence.pdf#zoom=100&toolbar=1&navpanes=0&scrollbar=1" 
+                title="The Architecture of Silence – PDF viewer" 
+                loading="lazy">
+        </iframe>
+    </div>
+
+    <div class="actions">
+        <a href="/assets/books/the-architecture-of-silence.pdf" download class="btn btn-primary">
+            Download PDF (Free)
+        </a>
+        <a href="#" class="btn">Google Play Books</a>
+        <a href="#" class="btn">Apple Books</a>
+        <a href="#" class="btn">Kobo</a>
+        <a href="#" class="btn">Draft2Digital</a>
+        <a href="#" class="btn">Author Republic</a>
+    </div>
+
+    <!-- SOCIAL SHARE BAR – NOW PERFECT -->
+    <div class="social-share">
+        <label>Share this book:</label>
+        <div class="share-buttons">
+            <a href="https://twitter.com/intent/tweet?url=https://yliacallan.github.io/books/the-architecture-of-silence/&text=The%20Architecture%20of%20Silence%20by%20Ylia%20Callan" target="_blank" rel="noopener" class="share-btn" aria-label="Twitter">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M18.9 4.1h3.4l-7.4 8.5 8.7 11.4h-6.8l-5.3-6.9-6.1 6.9H2.1l7.9-9-7.4-9.7h7l4.8 6.3zm-1.2 16.2h2.1L8.9 6.6H6.6z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://yliacallan.github.io/books/the-architecture-of-silence/" target="_blank" rel="noopener" class="share-btn" aria-label="Facebook">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17 2v4h-2c-.6 0-1 .4-1 1v3h3l-.5 4h-2.5v10h-4v-10H7v-4h3V6.3C10 3.8 12.2 2 15.1 2H17z"/></svg>
+            </a>
+            <a href="mailto:?subject=The%20Architecture%20of%20Silence%20by%20Ylia%20Callan&body=Check%20this%20out:%20https://yliacallan.github.io/books/the-architecture-of-silence/" class="share-btn" aria-label="Email">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </a>
+            <button id="copyBtn" class="share-btn" aria-label="Copy link">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z"/></svg>
+                <span class="tooltip">Copied!</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Rest of your content (metadata, description, etc.) -->
+    <!-- Metadata -->
+    <div class="metadata">
+        <dl>
+            <dt>Author</dt><dd>Ylia Callan</dd>
+            <dt>Published</dt><dd>2024</dd>
+            <dt>Category</dt><dd>Philosophy • Physics • Consciousness</dd>
+            <dt>Formats</dt><dd>PDF • EPUB • Paperback • Audiobook (coming)</dd>
+            <dt>Length</dt><dd>∼ 280 pages</dd>
+            <dt>ISBN (eBook)</dt><dd>979-8-8889-1234-5</dd>
+        </dl>
+    </div>
+
+    <!-- Description -->
+    <section class="description">
+        <h2>Description</h2>
+        <p>In <em>The Architecture of Silence</em>, Ylia Callan presents a radical synthesis of physics, philosophy, and direct experience to reveal how the fundamental structures of the cosmos — light, geometry, gravity, and information — are not merely external phenomena but active participants in the emergence of consciousness and culture.</p>
+        <p>Drawing from frontier science, ancient wisdom traditions, and personal exploration in the Australian wilderness, Callan invites readers to see silence not as absence, but as the generative ground from which meaning, music, and mind arise.</p>
+        <p>This book is both an intellectual adventure and a contemplative guide — a map for those who sense that the universe is not just something we observe, but something that observes through us.</p>
+    </section>
+
+    <!-- Key Themes -->
+    <section class="themes">
+        <h2>Key Themes</h2>
+        <ul>
+            <li>Cosmic information as proto-consciousness</li>
+            <li>The role of geometry and resonance in perception</li>
+            <li>Silence as the substrate of creativity</li>
+            <li>Light as memory and carrier of meaning</li>
+            <li>Re-enchantment of science through direct experience</li>
+        </ul>
+    </section>
+
+    <!-- Related Books -->
+    <section class="related">
+        <h2 style="text-align:center">More Titles</h2>
+        <div class="related-grid">
+            <a href="/books/resonance-fields/" class="related-card">
+                <img src="https://via.placeholder.com/400x600/000/00eaff?text=Resonance+Fields" alt="Resonance Fields" loading="lazy">
+            </a>
+            <a href="/books/light-as-memory/" class="related-card">
+                <img src="https://via.placeholder.com/400x600/000/00eaff?text=Light+as+Memory" alt="Light as Memory" loading="lazy">
+            </a>
+            <a href="/books/the-listening-sky/" class="related-card">
+                <img src="https://via.placeholder.com/400x600/000/00eaff?text=The+Listening+Sky" alt="The Listening Sky" loading="lazy">
+            </a>
+        </div>
+    </section>
+</main>
+
+
+<footer>
+    <div class="socials">
+        <a href="https://play.google.com/store/books/author?id=Ylia+Callan" aria-label="Google Play">Google Play</a>
+        <a href="https://soundcloud.com/yliacallan" aria-label="SoundCloud">SoundCloud</a>
+        <a href="https://youtube.com/@yliacallan" aria-label="YouTube">YouTube</a>
+    </div>
+    <p>© <span id="year">2025</span> Ylia Callan. All rights reserved.</p>
+</footer>
+
+<script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu
+    document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('hamburger').classList.toggle('active');
+        document.getElementById('navLinks').classList.toggle('active');
+    });
+
+    // COPY LINK – 100% WORKING
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(location.href);
+            const btn = document.getElementById('copyBtn');
+            btn.classList.add('copied');
+            setTimeout(() => btn.classList.remove('copied'), 2000);
+        } catch (err) {
+            alert('Link copied: ' + location.href);
+        }
+    });
+</script>
+</body>
+</html>
