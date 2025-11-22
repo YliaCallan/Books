@@ -776,35 +776,6 @@ document.getElementById("logoShare").addEventListener("click", async () => {
   }
 </script>
 
-<script>
-// FINAL MOBILE MENU AUTO-CLOSE — WORKS ON YOUR SITE 100%
-document.addEventListener('click', function(e) {
-  const link = e.target.closest('a');
-  if (!link) return;
-
-  // Find the mobile menu container
-  const menu = document.querySelector('.mobile-menu, nav, header, #mobile-menu');
-  if (!menu) return;
-
-  console.log('Menu link clicked → FORCING CLOSE');
-
-  // YOUR SITE uses class "open" on the menu — remove it
-  menu.classList.remove('open');
-
-  // Also remove from body (many themes do this)
-  document.body.classList.remove('menu-open', 'mobile-menu-open', 'overflow-hidden');
-
-  // If your menu uses a checkbox (backup)
-  const checkbox = document.querySelector('#menu-toggle, input[type="checkbox"]');
-  if (checkbox) checkbox.checked = false;
-
-  // Extra: remove any "active" class from hamburger icon
-  document.querySelectorAll('.hamburger, .menu-icon').forEach(icon => {
-    icon.classList.remove('active', 'open');
-  });
-});
-</script>
-
     
 <script>
 // Simple "Copy Page Link" with nice feedback
@@ -831,6 +802,18 @@ document.getElementById('copyLinkBtn').addEventListener('click', async () => {
     feedback.style.opacity = '1';
     setTimeout(() => feedback.style.opacity = '0', 2000);
   }
+});
+</script>
+
+    <script>
+// EXACT FIX FOR YOUR HAMBURGER MENU — CLOSES ON LINK CLICK
+document.querySelectorAll('#navLinks a').forEach(link => {
+  link.addEventListener('click', () => {
+    // Toggle off the active classes (your exact structure)
+    document.getElementById('hamburger').classList.remove('active');
+    document.getElementById('navLinks').classList.remove('active');
+    console.log('Menu closed!');  // Confirm in console
+  });
 });
 </script>
     
