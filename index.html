@@ -403,6 +403,64 @@
         @keyframes glow{from{text-shadow:0 0 12px rgba(0,234,255,.5)}to{text-shadow:0 0 20px rgba(0,234,255,.8),0 0 30px rgba(0,234,255,.4)}}
         h1,h2{animation:glow 4s ease-in-out infinite alternate}
 
+
+.footer-socials {
+  padding: 3rem 1rem 2rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.social-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;           /* Allows wrapping on small screens */
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.social-row a {
+  color: var(--cyan);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.social-row a:hover {
+  opacity: 0.8;
+  text-shadow: var(--cyan-glow);
+  transform: translateY(-2px);
+}
+
+/* Optional: tighter spacing on very small phones */
+@media (max-width: 480px) {
+  .social-row {
+    gap: 1.5rem;
+    font-size: 1rem;
+  }
+}
+        
+        
+.copy-link {
+  background: transparent;
+  border: 2px solid var(--cyan);
+  color: var(--cyan);
+  padding: 0.6rem 1.4rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.copy-link:hover {
+  background: var(--cyan);
+  color: #000;
+  box-shadow: 0 0 20px rgba(0, 234, 255, 0.5);
+}
+
     </style>
 
     <!-- Swiper.js (lightweight) -->
@@ -475,9 +533,9 @@
             </div>
         </section>
         
-    <div class="footer-socials">
+  <div class="footer-socials">
 
-    <!-- LINE 1 – Main social platforms (horizontal) -->
+    <!-- LINE 1 – Main socials -->
     <div class="social-row">
       <a href="https://www.youtube.com/@ylia" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.linkedin.com/in/ylia-callan-8b889976/" target="_blank" rel="noopener">LinkedIn</a>
@@ -488,12 +546,8 @@
 
     <!-- LINE 2 – Book stores -->
     <div class="social-row">
-      <a href="https://play.google.com/store/books/author?id=Ylia+Callan" target="_blank" rel="noopener">
-        Google Play
-      </a>
-      <a href="https://books.apple.com/us/author/ylia-callan/id672856291" target="_blank" rel="noopener">
-        Apple Books
-      </a>
+      <a href="https://play.google.com/store/books/author?id=Ylia+Callan" target="_blank" rel="noopener">Google Play</a>
+      <a href="https://books.apple.com/us/author/ylia-callan/id672856291" target="_blank" rel="noopener">Apple Books</a>
     </div>
 
     <!-- LINE 3 – Music + App + Install + Home -->
@@ -503,6 +557,18 @@
       <a href="javascript:void(0)" class="install-trigger" onclick="triggerInstall()">Install App</a>
       <a href="https://yliacallan.github.io/books/">Home</a>
     </div>
+
+    <!-- NEW: Simple Copy Link button -->
+    <div class="social-row copy-link-row">
+      <button id="copyLinkBtn" class="copy-link">
+        Copy Page Link
+      </button>
+      <span id="copyFeedback" style="margin-left: 10px; opacity: 0; color: var(--cyan); font-size: 0.9rem;"></span>
+    </div>
+
+  </div>
+</footer>
+        
         <p>&copy; <span id="year">2025</span> Ylia Callan. All rights reserved.</p>
     </footer>
 
@@ -727,7 +793,33 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
-
+<script>
+// Simple "Copy Page Link" with nice feedback
+document.getElementById('copyLinkBtn').addEventListener('click', async () => {
+  const url = window.location.href;
+  const feedback = document.getElementById('copyFeedback');
+  
+  try {
+    await navigator.clipboard.writeText(url);
+    feedback.textContent = 'Copied!';
+    feedback.style.opacity = '1';
+    setTimeout(() => {
+      feedback.style.opacity = '0';
+    }, 2000);
+  } catch (err) {
+    // Fallback for older browsers
+    const textArea = document.createElement('textarea');
+    textArea.value = url;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+    feedback.textContent = 'Copied!';
+    feedback.style.opacity = '1';
+    setTimeout(() => feedback.style.opacity = '0', 2000);
+  }
+});
+</script>
     
 </body>
 </html>
