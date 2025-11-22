@@ -777,18 +777,31 @@ document.getElementById("logoShare").addEventListener("click", async () => {
 </script>
 
 <script>
-// Auto-close mobile menu when any link is clicked
-document.querySelectorAll('#mobile-menu a, .mobile-menu a, nav a, .menu a').forEach(link => {
-  link.addEventListener('click', () => {
-    // Find and uncheck the mobile menu checkbox/toggle
-    const checkbox = document.querySelector('#menu-toggle, #mobile-menu-toggle, input[type="checkbox"][id*="menu"]');
-    if (checkbox) checkbox.checked = false;
-    
-    // Also close any menu with class "open" or "active"
-    document.querySelectorAll('.mobile-menu, .menu, nav').forEach(menu => {
-      menu.classList.remove('open', 'active', 'show');
-    });
+// AUTO-CLOSE MOBILE MENU — WORKS WITH EVERY METHOD
+document.addEventListener('click', function(e) {
+  // 1. If user clicked ANY link inside the menu → close it
+  const clickedLink = e.target.closest('a[href]');
+  if (!clickedLink) return;
+
+  const menuArea = clickedLink.closest('nav, header, #mobile-menu, .mobile-menu, .menu');
+  if (!menuArea) return;
+
+  console.log('Menu link clicked → closing mobile menu');
+
+  // METHOD 1: Checkbox toggle (most common)
+  const checkbox = document.querySelector('#menu-toggle, #mobile-menu-toggle, input[type="checkbox"][id*="menu"], input[type="checkbox"][id*="nav"]');
+  if (checkbox && checkbox.checked) {
+    checkbox.checked = false;
+    console.log('Closed via checkbox');
+  }
+
+  // METHOD 2: Class-based menus (open/active/show)
+  document.querySelectorAll('nav, header, .mobile-menu, .menu, #mobile-menu').forEach(el => {
+    el.classList.remove('open', 'active', 'show', 'visible', 'is-open');
   });
+
+  // METHOD 3: Body class (some themes use this)
+  document.body.classList.remove('menu-open', 'nav-open', 'mobile-menu-active');
 });
 </script>
 
