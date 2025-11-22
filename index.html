@@ -428,14 +428,18 @@
     <a href="https://x.com/guitaralize/" target="_blank" rel="noopener" aria-label="X (Twitter)">
         X (Twitter)
     </a>
-    <br> 
+    </div>
+        
+    <div class="Books Stores">
     <a href="https://play.google.com/store/books/author?id=Ylia+Callan" target="_blank" rel="noopener" aria-label="Google Play Books">
         Google Play
     </a>
     <a href="https://books.apple.com/us/author/ylia-callan/id672856291" target="_blank" rel="noopener" aria-label="Apple Books">
         Apple Books
     </a>  
-    <br> 
+    </div>
+        
+    <div class="Home">   
     <a href="https://yliacallan.github.io/books/" aria-label="Home">
         Home
     </a>
@@ -489,7 +493,7 @@
             `;
         });
 
-        // Populate gallery (all books)
+        // Populate gallery (catalogue)
         const bookGrid = document.getElementById('bookGrid');
         shuffledBooks.forEach(book => {
             bookGrid.innerHTML += `
@@ -518,29 +522,37 @@
             // Uncomment when you add sw.js
             // navigator.serviceWorker.register('/sw.js');
         }
-        
-    document.getElementById("shareBtn").addEventListener("click", async () => {
+
+    // Share Buttons
+   async function doShare() {
     const shareData = {
         title: document.title,
         text: "Check out this site!",
         url: window.location.href
     };
 
+    // Native Web Share API
     if (navigator.share) {
         try {
             await navigator.share(shareData);
+            return;
         } catch (err) {
-            console.log("User cancelled share:", err);
-        }
-    } else {
-        try {
-            // Fallback for unsupported browsers (copy link)
-            await navigator.clipboard.writeText(window.location.href);
-            alert("Link copied to clipboard!");
-        } catch (e) {
-            alert("Unable to copy link.");
+            console.log("Share cancelled:", err);
         }
     }
+
+    // Fallback: copy link
+    try {
+        await navigator.clipboard.writeText(window.location.href);
+        alert("Link copied to clipboard!");
+    } catch (e) {
+        alert("Unable to copy link.");
+    }
+}
+
+// Attach to ALL share buttons
+document.querySelectorAll(".share-button").forEach(btn => {
+    btn.addEventListener("click", doShare);
 });
 
            // Share website on logo click
