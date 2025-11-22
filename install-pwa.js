@@ -14,17 +14,39 @@ function isStandalone() {
          window.matchMedia('(display-mode: standalone)').matches;
 }
 
-// Hide all install triggers if already installed
 function updateInstallUI() {
-  const triggers = document.querySelectorAll('.install-trigger');
-  if (isStandalone()) {
-    triggers.forEach(el => el.style.display = 'none');
-  } else {
-    triggers.forEach(el => {
-      el.style.display = (el.tagName === 'BUTTON') ? 'block' : 'inline-block';
-    });
+  console.log("PWA Debug: Updating UI...", {
+    isInstalled,
+    standalone: isAlreadyInstalled(),
+    deferredPrompt
+  });
+
+  const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+
+  // If installed → hide everything
+  if (isInstalled || isAlreadyInstalled()) {
+    document.querySelectorAll(".install-trigger").forEach(el => el.style.display = "none");
+    return;
   }
+
+  // ANDROID / CHROME: Only show button when beforeinstallprompt fired
+  if (!isIOS && deferredPrompt) {
+    installButton.style.display = "block";
+    return;
+  }
+
+  // iOS: NEVER show automatically
+  // Only show on user’s explicit click
+  if (isIOS) {
+    installButton.style.display = "block"; // small button, manual
+    iosPrompt.style.display = "none"; // never show automatically
+    return;
+  }
+
+  // Otherwise (desktop browsers, unsupported browsers): hide
+  installButton.style.display = "none";
 }
+
 
 // Save the native install prompt (Chrome/Android/Edge)
 window.addEventListener('beforeinstallprompt', (e) => {
