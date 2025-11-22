@@ -443,11 +443,12 @@
     <a href="https://play.google.com/store/books/author?id=Ylia+Callan" target="_blank" rel="noopener" aria-label="Google Play Books">
         Google Play
     </a>
+        
     <a href="https://books.apple.com/us/author/ylia-callan/id672856291" target="_blank" rel="noopener" aria-label="Apple Books">
         Apple Books
     </a>  
     </div>
-        
+
     <div class="Home">   
     <a href="https://yliacallan.github.io/books/" aria-label="Home">
         Home
@@ -532,8 +533,8 @@
             // navigator.serviceWorker.register('/sw.js');
         }
 
-    // Share Buttons
-   async function doShare() {
+ // Share Buttons
+async function doShare() {
     const shareData = {
         title: document.title,
         text: "Check out this site!",
@@ -544,13 +545,20 @@
     if (navigator.share) {
         try {
             await navigator.share(shareData);
-            return;
+            return; // Exit function if share succeeds
         } catch (err) {
-            console.log("Share cancelled:", err);
+            // Check specifically if the user cancelled the share (AbortError)
+            if (err.name === 'AbortError') {
+                console.log("Share cancelled by user:", err);
+                return; // IMPORTANT: Exit the function if user cancelled
+            } else {
+                console.error("An error occurred during sharing:", err);
+                // If it's another error (e.g. no network), fall through to clipboard fallback
+            }
         }
     }
 
-    // Fallback: copy link
+    // Fallback: copy link (only runs if navigator.share is not available OR an error other than AbortError occurred)
     try {
         await navigator.clipboard.writeText(window.location.href);
         alert("Link copied to clipboard!");
@@ -564,8 +572,8 @@ document.querySelectorAll(".share-button").forEach(btn => {
     btn.addEventListener("click", doShare);
 });
 
-           // Share website on logo click
-    document.getElementById("logoShare").addEventListener("click", async () => {
+// Share website on logo click
+document.getElementById("logoShare").addEventListener("click", async () => {
     const shareData = {
         title: document.title,
         text: "Check out this book by Ylia Callan!",
@@ -577,6 +585,10 @@ document.querySelectorAll(".share-button").forEach(btn => {
             await navigator.share(shareData);
         } catch (err) {
             console.log("Share cancelled:", err);
+            // You should add the AbortError check here too for consistency if you don't want the logo click to fallback on cancel:
+            if (err.name === 'AbortError') {
+                return; 
+            }
         }
     } else {
         // Fallback: copy link
@@ -588,6 +600,7 @@ document.querySelectorAll(".share-button").forEach(btn => {
         }
     }
 });
+
     
     </script>
 
