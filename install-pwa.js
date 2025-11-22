@@ -1,40 +1,43 @@
 let deferredPrompt;
 let isInstalled = false;
 
-const installButton = document.getElementById('installButton');
 const iosPrompt = document.getElementById('iosPrompt');
 
-// Check if already installed (PWA or iOS standalone)
-function checkIfInstalled() {
-  const isStandalone = window.navigator.standalone || 
-                       window.matchMedia('(display-mode: standalone)').matches;
-  if (isStandalone || isInstalled) {
-    installButton.style.display = 'none';
+// Check if already installed (PWA or iOS standalone mode)
+function isAlreadyInstalled() {
+  return window.navigator.standalone === true || 
+         window.matchMedia('(display-mode: standalone)').matches;
+}
+
+// Hide install elements if already installed
+function updateInstallUI() {
+  if (isAlreadyInstalled() || isInstalled) {
+    document.querySelectorAll('.install-trigger').forEach(el => {
+      el.style.display = 'none';
+    });
   }
 }
 
-// Android/Chrome/Edge/Firefox install prompt
+// Android/Desktop: save the install prompt
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  installButton.style.display = 'block';
+  updateInstallUI(); // Show triggers if installable
 });
 
-// Button click → Android installs, iOS shows instructions
-function showInstallPrompt() {
-  if (!installButton) return;
-
-  // iOS: show custom instructions
+// Main install function — used by button AND text links
+function triggerInstall() {
+  // iOS: show custom popup
   if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream) {
     iosPrompt.style.display = 'flex';
   } 
-  // Android/Desktop: trigger native install
+  // Android/Desktop: show native install dialog
   else if (deferredPrompt) {
     deferredPrompt.prompt();
     deferredPrompt.userChoice.then((choice) => {
       if (choice.outcome === 'accepted') {
         isInstalled = true;
-        installButton.style.display = 'none';
+        updateInstallUI();
       }
       deferredPrompt = null;
     });
@@ -48,14 +51,11 @@ function hideIosPrompt() {
 
 // Run on load
 window.addEventListener('load', () => {
-  checkIfInstalled();
-  if (!isInstalled) {
-    installButton.style.display = 'block';  // Always show button unless already installed
-  }
+  updateInstallUI();
 });
 
-// Also hide button when app is launched in installed mode
+// Also hide everything when app is actually installed
 window.addEventListener('appinstalled', () => {
   isInstalled = true;
-  installButton.style.display = 'none';
+  updateInstallUI();
 });
