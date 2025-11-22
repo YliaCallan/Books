@@ -569,11 +569,6 @@
         <p>&copy; <span id="year">2025</span> Ylia Callan. All rights reserved.</p>
     </footer>
 
-        <!-- Floating Install Button — ADD ID BACK -->
-<button id="installButton" class="install-trigger" onclick="triggerInstall()"
-        style="display:none; position:fixed; bottom:20px; right:20px; background:#00eaff; color:#000; border:none; padding:14px 26px; border-radius:50px; font-weight:700; font-size:1rem; cursor:pointer; box-shadow:0 0 24px rgba(0,234,255,0.7); z-index:9998;">
-  Install App
-</button>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -694,7 +689,7 @@ document.querySelectorAll(".share-button").forEach(btn => {
 document.getElementById("logoShare").addEventListener("click", async () => {
     const shareData = {
         title: document.title,
-        text: "Check out this book by Ylia Callan!",
+        text: "Check out these books by Ylia Callan",
         url: window.location.href
     };
 
