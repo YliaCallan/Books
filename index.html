@@ -253,23 +253,45 @@
         }
 
                 /* Contact */
-        .contact {
+        .socials {
             padding: 1rem 1rem;
             max-width: 1400px;
             margin: 0 auto;
         }
-        .contact h2 {
+        .socials h2 {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 3rem;
             color: var(--cyan);
             text-shadow: var(--cyan-glow);
         }
+        .socials {
+    display: flex;
+    justify-content: center; /* Centers items along the main (vertical) axis */
+    align-items: center;     /* Centers items along the cross (horizontal) axis */
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    width: 100%; /* Ensure it spans the full width of the page */
+}
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 2rem;
         }
+
+       /* Optional: Add text alignment to the h2 to ensure its text is centered within its own box */
+.socials h2 {
+    text-align: center;
+}
+        .socials svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--cyan);
+            transition: var(--transition);
+        }
+        .socials a:hover svg { transform: scale(1.2); }
+
+        
         .book-card {
             border-radius: 16px;
             overflow: hidden;
@@ -299,15 +321,6 @@
             text-align: center;
             border-top: 1px solid rgba(0,234,255,0.15);
         }
-        
-.socials {
-    display: flex;
-    justify-content: center; /* Centers items along the main (vertical) axis */
-    align-items: center;     /* Centers items along the cross (horizontal) axis */
-    gap: 1.5rem;
-    margin: 1.5rem 0;
-    width: 100%; /* Ensure it spans the full width of the page */
-}
 
 .retailers {
     display: flex;
@@ -318,17 +331,6 @@
     width: 100%; /* Ensure it spans the full width of the page */
 }
 
-/* Optional: Add text alignment to the h2 to ensure its text is centered within its own box */
-.socials h2 {
-    text-align: center;
-}
-        .socials svg {
-            width: 28px;
-            height: 28px;
-            fill: var(--cyan);
-            transition: var(--transition);
-        }
-        .socials a:hover svg { transform: scale(1.2); }
 
         /* Animations */
         @keyframes glow {
@@ -727,6 +729,24 @@ document.getElementById("logoShare").addEventListener("click", async () => {
       .then(() => console.log('PWA: SW registered'))
       .catch(err => console.error('PWA: SW failed', err));
   }
+</script>
+
+    // Auto-close mobile menu on link click — works with 99% of menus
+
+<script>
+document.addEventListener('click', function(e) {
+  if (e.target.closest('a') && e.target.getAttribute('href')) {
+    // Close checkbox menus
+    const checkbox = document.querySelector('input[type="checkbox"]:checked');
+    if (checkbox && checkbox.id.toLowerCase().includes('menu')) {
+      checkbox.checked = false;
+    }
+    // Close class-based menus
+    document.querySelectorAll('.mobile-menu, nav, .menu').forEach(el => {
+      el.classList.remove('open', 'active', 'show', 'visible');
+    });
+  }
+});
 </script>
 
 
