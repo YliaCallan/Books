@@ -9,12 +9,12 @@
   "orientation": "any",
   "icons": [
     {
-      "src": "/assets/pwa-icons/icon-192.png",
+      "src": "/books/assets/pwa-icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/assets/pwa-icons/icon-512.png",
+      "src": "/books/assets/pwa-icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
