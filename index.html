@@ -216,6 +216,20 @@
             color: var(--cyan);
             text-shadow: var(--cyan-glow);
         }
+
+                /* Contact */
+        .socials {
+            padding: 4rem 1rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .socials h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--cyan);
+            text-shadow: var(--cyan-glow);
+        }
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -255,7 +269,15 @@
     display: flex;
     justify-content: center; /* Centers items along the main (vertical) axis */
     align-items: center;     /* Centers items along the cross (horizontal) axis */
-    flex-direction: column;  /* Stack items vertically */
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    width: 100%; /* Ensure it spans the full width of the page */
+}
+
+.retailers {
+    display: flex;
+    justify-content: center; /* Centers items along the main (vertical) axis */
+    align-items: center;     /* Centers items along the cross (horizontal) axis */
     gap: 1.5rem;
     margin: 1.5rem 0;
     width: 100%; /* Ensure it spans the full width of the page */
@@ -439,7 +461,7 @@
     </a>
     </div>
         
-    <div class="Books Stores">
+    <div class="retailers">
     <a href="https://play.google.com/store/books/author?id=Ylia+Callan" target="_blank" rel="noopener" aria-label="Google Play Books">
         Google Play
     </a>
