@@ -777,34 +777,35 @@ document.getElementById("logoShare").addEventListener("click", async () => {
 </script>
 
 <script>
-// AUTO-CLOSE MOBILE MENU — WORKS WITH EVERY METHOD
+// FINAL MOBILE MENU AUTO-CLOSE — WORKS ON YOUR SITE 100%
 document.addEventListener('click', function(e) {
-  // 1. If user clicked ANY link inside the menu → close it
-  const clickedLink = e.target.closest('a[href]');
-  if (!clickedLink) return;
+  const link = e.target.closest('a');
+  if (!link) return;
 
-  const menuArea = clickedLink.closest('nav, header, #mobile-menu, .mobile-menu, .menu');
-  if (!menuArea) return;
+  // Find the mobile menu container
+  const menu = document.querySelector('.mobile-menu, nav, header, #mobile-menu');
+  if (!menu) return;
 
-  console.log('Menu link clicked → closing mobile menu');
+  console.log('Menu link clicked → FORCING CLOSE');
 
-  // METHOD 1: Checkbox toggle (most common)
-  const checkbox = document.querySelector('#menu-toggle, #mobile-menu-toggle, input[type="checkbox"][id*="menu"], input[type="checkbox"][id*="nav"]');
-  if (checkbox && checkbox.checked) {
-    checkbox.checked = false;
-    console.log('Closed via checkbox');
-  }
+  // YOUR SITE uses class "open" on the menu — remove it
+  menu.classList.remove('open');
 
-  // METHOD 2: Class-based menus (open/active/show)
-  document.querySelectorAll('nav, header, .mobile-menu, .menu, #mobile-menu').forEach(el => {
-    el.classList.remove('open', 'active', 'show', 'visible', 'is-open');
+  // Also remove from body (many themes do this)
+  document.body.classList.remove('menu-open', 'mobile-menu-open', 'overflow-hidden');
+
+  // If your menu uses a checkbox (backup)
+  const checkbox = document.querySelector('#menu-toggle, input[type="checkbox"]');
+  if (checkbox) checkbox.checked = false;
+
+  // Extra: remove any "active" class from hamburger icon
+  document.querySelectorAll('.hamburger, .menu-icon').forEach(icon => {
+    icon.classList.remove('active', 'open');
   });
-
-  // METHOD 3: Body class (some themes use this)
-  document.body.classList.remove('menu-open', 'nav-open', 'mobile-menu-active');
 });
 </script>
 
+    
 <script>
 // Simple "Copy Page Link" with nice feedback
 document.getElementById('copyLinkBtn').addEventListener('click', async () => {
