@@ -280,6 +280,28 @@
   box-shadow: 0 0 20px rgba(0, 234, 255, 0.5);
 }
 
+        /* Center the Copy Link Button */
+.copy-link-row,
+.social-row:has(#copyLinkBtn) {
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 1rem auto !important;
+}
+
+#copyLinkBtn {
+  margin: 0 auto !important;  /* Fallback for non-flex parents */
+  display: block !important;  /* Makes margin auto work */
+  text-align: center !important;
+}
+
+/* Mobile: Ensure it stacks nicely */
+@media (max-width: 768px) {
+  #copyLinkBtn {
+    width: 100% !important;
+    max-width: 200px !important;
+  }
+}
+
         
     </style>
 </head>
@@ -354,7 +376,7 @@
 
     <!-- Description -->
     <section class="description">
-        <h2>Description</h2>
+        <h2>Book Description</h2>
 <p>What if every breath you take is a thread weaving mind into matter, intention into reality?</p>
 
 <p>The Breath of Reality is a groundbreaking fusion of science and spirit - a guide to mastering your breath as a tool for healing, focus, emotional release, performance and manifestation. Drawing on cutting-edge research in physiology, neuroscience and bio-electromagnetism, this book reveals how breath regulates your brain waves, shifts your emotional state and reprograms your subconscious.</p>
